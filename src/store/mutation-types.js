@@ -1,0 +1,5 @@
+export const START = 'START'
+export const STOP = 'STOP'
+export const RESET_FIELD = 'RESET_FIELD'
+export const NEXT_FIELD = 'NEXT_FIELD'
+export const SET_INITIAL_STATE = 'SET_INITIAL_STATE'

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import * as mTypes from './store/mutation-types'
 
 function extractPaticipations() {
   const rectList = document.querySelectorAll('#d3-participation-streak-graph rect')
@@ -13,7 +14,7 @@ function extractPaticipations() {
 function init() {
   const dd = document.querySelector('#d3-participation-streak-graph')
 
-  store.commit('setInitialState', {
+  store.commit(mTypes.SET_INITIAL_STATE, {
     cells: extractPaticipations(),
     rowCount: 10
   })

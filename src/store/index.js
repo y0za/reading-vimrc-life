@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as mTypes from './mutation-types'
 
 Vue.use(Vuex)
 
@@ -11,16 +12,16 @@ const state = {
 }
 
 const mutations = {
-  start(state) {
+  [mTypes.START](state) {
     state.running = true
   },
-  stop(state) {
+  [mTypes.STOP](state) {
     state.running = false
   },
-  resetField(state) {
+  [mTypes.RESET_FIELD](state) {
     state.field = createField(state.initialCells, state.rowCount)
   },
-  nextField(state) {
+  [mTypes.NEXT_FIELD](state) {
     let field = []
     for (let y = 0; y < state.field.length; y++) {
       field.push([])
@@ -32,7 +33,7 @@ const mutations = {
     }
     state.field = field
   },
-  setInitialState(state, { cells, rowCount }) {
+  [mTypes.SET_INITIAL_STATE](state, { cells, rowCount }) {
     state.field = createField(cells, rowCount)
     state.initialCells = cells
     state.rowCount = rowCount
@@ -94,22 +95,22 @@ function aroundAlivesCount(field, row, column) {
 
 const actions = {
   start({ dispatch, commit }) {
-    commit('start')
+    commit(mTypes.START)
     dispatch('update')
   },
   update({ dispatch, commit, state }) {
     if (state.running !== true) {
       return
     }
-    commit('nextField')
+    commit(mTypes.NEXT_FIELD)
 
     setTimeout(() => {
       dispatch('update')
     }, 500)
   },
   reset({ commit }) {
-    commit('stop')
-    commit('resetField')
+    commit(mTypes.STOP)
+    commit(mTypes.RESET_FIELD)
   }
 }
 
