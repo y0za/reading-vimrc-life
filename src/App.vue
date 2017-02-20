@@ -9,17 +9,18 @@
       </template>
     </svg>
     <div class="gol-controller">
-      <button v-on:click="$store.dispatch('start')">Start</button>
+      <button v-on:click="start">Start</button>
       <button v-on:click="stop">Stop</button>
-      <button v-on:click="$store.dispatch('reset')">Reset</button>
+      <button v-on:click="reset">Reset</button>
     </div>
   </dd>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import Cell from './components/Cell.vue'
 import * as mTypes from './store/mutation-types'
+import * as aTypes from './store/action-types'
 
 export default {
   name: 'app',
@@ -29,6 +30,10 @@ export default {
   methods: {
     ...mapMutations({
       stop: mTypes.STOP
+    }),
+    ...mapActions({
+      start: aTypes.START,
+      reset: aTypes.RESET
     })
   },
   components: {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as mTypes from './mutation-types'
+import * as aTypes from './action-types'
 
 Vue.use(Vuex)
 
@@ -94,21 +95,21 @@ function aroundAlivesCount(field, row, column) {
 }
 
 const actions = {
-  start({ dispatch, commit }) {
+  [aTypes.START]({ dispatch, commit }) {
     commit(mTypes.START)
-    dispatch('update')
+    dispatch(aTypes.UPDATE)
   },
-  update({ dispatch, commit, state }) {
+  [aTypes.UPDATE]({ dispatch, commit, state }) {
     if (state.running !== true) {
       return
     }
     commit(mTypes.NEXT_FIELD)
 
     setTimeout(() => {
-      dispatch('update')
+      dispatch(aTypes.UPDATE)
     }, 500)
   },
-  reset({ commit }) {
+  [aTypes.RESET]({ commit }) {
     commit(mTypes.STOP)
     commit(mTypes.RESET_FIELD)
   }
