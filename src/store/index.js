@@ -22,9 +22,9 @@ const mutations = {
   },
   nextField(state) {
     let field = []
-    for (let y = 0; y < field.length; y++) {
+    for (let y = 0; y < state.field.length; y++) {
       field.push([])
-      for (let x = 0; x < field[y].length; x++) {
+      for (let x = 0; x < state.field[y].length; x++) {
         const aroundAlives = aroundAlivesCount(state.field, y, x)
         const alive = nextAlive(state.field[y][x], aroundAlives)
         field[y].push(alive)
