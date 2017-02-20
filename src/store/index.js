@@ -92,7 +92,29 @@ function aroundAlivesCount(field, row, column) {
   return alives
 }
 
+const actions = {
+  start({ dispatch, commit }) {
+    commit('start')
+    dispatch('update')
+  },
+  update({ dispatch, commit, state }) {
+    if (state.running !== true) {
+      return
+    }
+    commit('nextField')
+
+    setTimeout(() => {
+      dispatch('update')
+    }, 500)
+  },
+  reset({ commit }) {
+    commit('stop')
+    commit('resetField')
+  }
+}
+
 export default new Vuex.Store({
   state,
-  mutations
+  mutations,
+  actions
 })
