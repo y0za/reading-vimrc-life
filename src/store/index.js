@@ -41,12 +41,12 @@ const mutations = {
 
 function createField(cells, rowCount) {
   let field = []
+  for (let r = 0; r < rowCount; r++) {
+    field.push([])
+  }
 
   for (let i = 0; i < cells.length; i++) {
-    if (i % rowCount === 0) {
-      field.push([])
-    }
-    field[field.length - 1].push(cells[i])
+    field[i % rowCount].push(cells[i])
   }
 
   return field
