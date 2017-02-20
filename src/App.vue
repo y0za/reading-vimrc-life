@@ -8,6 +8,11 @@
           v-bind:column="x"></cell>
       </template>
     </svg>
+    <div class="gol-controller">
+      <button v-on:click="$store.dispatch('start')">Start</button>
+      <button v-on:click="$store.commit('stop')">Stop</button>
+      <button v-on:click="$store.dispatch('reset')">Reset</button>
+    </div>
   </dd>
 </template>
 
@@ -27,4 +32,7 @@ export default {
 </script>
 
 <style>
+.gol-controller {
+  text-align: center;
+}
 </style>
