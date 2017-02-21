@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "reading-vimrc-life",
+  "description": "Conway's Game of Life for reading-vimrc participations",
+  "version": "1.0.0",
+  "content_scripts": [{
+    "matches": [
+      "http://vim-jp.org/reading-vimrc/stat/*"
+    ],
+    "js": ["build.js"],
+    "run_at": "document_end"
+  }]
+}
