@@ -7,6 +7,10 @@
               v-bind:row="y"
               v-bind:column="x"></cell>
       </template>
+      <scale-mark v-for="(v, i) in scaleMarks"
+                  v-bind:scale-value="v"
+                  v-bind:index="i">
+      </scale-mark>
     </svg>
     <div class="gol-controller">
       <button v-on:click="start">Start</button>
@@ -17,15 +21,24 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+import {
+  mapState,
+  mapMutations,
+  mapActions,
+  mapGetters
+} from 'vuex'
 import Cell from './components/Cell.vue'
+import ScaleMark from './components/ScaleMark.vue'
 import * as mTypes from './store/mutation-types'
 import * as aTypes from './store/action-types'
 
 export default {
   name: 'app',
   computed: mapState({
-    field: state => state.field
+    field: state => state.field,
+    ...mapGetters([
+      'scaleMarks'
+    ])
   }),
   methods: {
     ...mapMutations({
@@ -37,7 +50,8 @@ export default {
     })
   },
   components: {
-    Cell
+    Cell,
+    ScaleMark
   }
 }
 </script>
