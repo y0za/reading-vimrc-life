@@ -115,8 +115,22 @@ const actions = {
   }
 }
 
+const getters = {
+  scaleMarks(state) {
+    const marksCount = state.initialCells.length / 20
+    const interval = 20
+
+    let marks = []
+    for (let i = 0; i < marksCount; i++) {
+      marks.push(i * interval)
+    }
+    return marks
+  }
+}
+
 export default new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  getters
 })
