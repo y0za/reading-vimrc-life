@@ -2,6 +2,8 @@
 
 > Conway's Game of Life for reading-vimrc participations
 
+[blog post](https://y0za.github.io/2017-02-22/reading-vimrc-life/)
+
 ## Build Setup
 
 ``` bash
